@@ -3,7 +3,7 @@ all:
 
     handbrake:
       hosts:
-        dev.diesel.net:
+        qaudro.diesel.net:
 
   vars:
     ansible_user: automation
