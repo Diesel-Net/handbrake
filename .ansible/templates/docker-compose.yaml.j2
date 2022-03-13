@@ -9,7 +9,7 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - {{ data_dir }}:/config:rw
-      - {{ config_dir }}:/storage:ro
+      - nas-media:/storage/nas-media:ro
       - {{ data_dir }}/watch:/watch:rw
       - {{ data_dir }}/output:/output:rw
       - nas-media:/data:ro
