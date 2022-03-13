@@ -8,8 +8,10 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=video,utility
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
-      - {{ data_dir }}:/config:rw
+      - {{ config_dir }}:/storage/presets:ro
       - nas-media:/storage/nas-media:ro
+      - nas-roms:/storage/nas-roms:ro
+      - {{ data_dir }}:/config:rw
       - {{ data_dir }}/watch:/watch:rw
       - {{ data_dir }}/output:/output:rw
       - nas-media:/data:ro
@@ -31,7 +33,18 @@ volumes:
       # OR `nfs-client` on CentOS/Fedora
       type: nfs
       o: addr={{ nfs_host }},ro,nfsvers=4,async
-      device: :{{ nfs_path }}
+      device: :{{ nfs_media_path }}
+
+  nas-roms:
+    driver: local
+    driver_opts:
+      # requires `nfs-common` on Debian
+      # OR `nfs-client` on CentOS/Fedora
+      type: nfs
+      o: addr={{ nfs_host }},ro,nfsvers=4,async
+      device: :{{ nfs_roms_path }}
+
+
 
 networks:
   {{ traefik_network }}:

@@ -1,2 +1,3 @@
 nfs_host: nas.diesel.net
-nfs_path: /volume1/Media
+nfs_media_path: /volume1/Media
+nfs_roms_path: /volume1/ROMs
