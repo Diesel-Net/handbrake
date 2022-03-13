@@ -15,6 +15,12 @@ services:
       - nas-media:/data:ro
     networks:
       - {{ traefik_network }}
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.{{ repository }}.loadbalancer.server.port=5800
+      - traefik.http.routers.{{ repository }}.rule=Host(`{{ host }}`)
+      - traefik.http.routers.{{ repository }}.service={{ repository }}
+      - traefik.http.routers.{{ repository }}.tls.certresolver=step-ca
 
 volumes:
   nas-media:

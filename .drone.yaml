@@ -5,7 +5,7 @@ name: deploy
 
 steps:
   - name: deploy Handbrake transcoder
-    image: plugins/ansible:3
+    image: docker.nexus.diesel.net/drone-ansible:5.3.0
     environment:
       ANSIBLE_CONFIG: .ansible/ansible.cfg
     settings:
