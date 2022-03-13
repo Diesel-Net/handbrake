@@ -3,7 +3,7 @@ all:
 
     handbrake:
       hosts:
-        gpu.diesel.net:
+        dev.diesel.net:
 
   vars:
     ansible_user: automation

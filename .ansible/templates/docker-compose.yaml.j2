@@ -3,22 +3,18 @@ services:
 
   webui:
     image: jlesage/handbrake:latest
-    ports:
-{% for port in plex_ports %}
-      - {{ port['host'] }}:{{ port['docker'] }}/{{ port['proto'] }}
-{% endfor %}
     environment:
-      - PLEX_UID={{ plex_user_id }}
-      - PLEX_GID={{ plex_group_id }}
-      - TZ={{ local_timezone }}
-      - PLEX_CLAIM={{ plex_claim_token }}
-      - ADVERTISE_IP=http://{{ ansible_default_ipv4['address'] }}:{{ plex_web_port }}/
+      # TODO
       - NVIDIA_DRIVER_CAPABILITIES=video,utility
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
-      - {{ config_dir }}:/config
-      - {{ data_dir }}:/transcode
+      - {{ data_dir }}:/config:rw
+      - {{ config_dir }}:/storage:ro
+      - {{ data_dir }}/watch:/watch:rw
+      - {{ data_dir }}/output:/output:rw
       - nas-media:/data:ro
+    networks:
+      - {{ traefik_network }}
 
 volumes:
   nas-media:
@@ -29,3 +25,8 @@ volumes:
       type: nfs
       o: addr={{ nfs_host }},ro,nfsvers=4,async
       device: :{{ nfs_path }}
+
+networks:
+  {{ traefik_network }}:
+    external: true
+    name: {{ traefik_network }}
