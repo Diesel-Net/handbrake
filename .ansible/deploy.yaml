@@ -24,6 +24,8 @@
       loop_control:
         loop_var: sub_dir
 
+    # TODO: Add Custom Handbrake Plex Presets into config_dir
+
     - include_role:
         name: docker
         tasks_from: stack_deploy
