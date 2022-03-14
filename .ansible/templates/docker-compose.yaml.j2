@@ -12,8 +12,8 @@ services:
       - nas-media:/storage/nas-media:ro
       - nas-roms:/storage/nas-roms:ro
       - {{ data_dir }}:/config:rw
-      - nas-handbrake/watch:/watch:rw
-      - nas-handbrake/output:/output:rw
+      - nas-handbrake-watch:/watch:rw
+      - nas-handbrake-output:/output:rw
     networks:
       - {{ traefik_network }}
     deploy:
@@ -43,14 +43,23 @@ volumes:
       o: addr={{ nfs_host }},ro,nfsvers=4,async
       device: :{{ nfs_roms_path }}
 
-  nas-handbrake:
+  nas-handbrake-watch:
     driver: local
     driver_opts:
       # requires `nfs-common` on Debian
       # OR `nfs-client` on CentOS/Fedora
       type: nfs
       o: addr={{ nfs_host }},ro,nfsvers=4,async
-      device: :{{ nfs_handbrake_path }}
+      device: :{{ nfs_handbrake_path }}/watch
+
+  nas-handbrake-output:
+    driver: local
+    driver_opts:
+      # requires `nfs-common` on Debian
+      # OR `nfs-client` on CentOS/Fedora
+      type: nfs
+      o: addr={{ nfs_host }},ro,nfsvers=4,async
+      device: :{{ nfs_handbrake_path }}/output
 
 
 
