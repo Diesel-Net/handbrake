@@ -15,7 +15,7 @@ services:
     volumes:
       - {{ localtime_file }}:/etc/localtime
       - {{ config_dir }}:/storage/presets:ro
-      - nas-roms:/storage/nas-roms:ro
+      - nas-blu-ray:/storage/blu-ray:ro
       - {{ data_dir }}:/config:rw
       - nas-handbrake-watch:/watch:rw
       - nas-handbrake-output:/output:rw
@@ -32,7 +32,7 @@ services:
 volumes:
   # NFS volumes requires `nfs-common` on Debian
   # OR `nfs-client` on CentOS/Fedora
-  nas-roms:
+  nas-blu-ray:
     driver: local
     driver_opts:
       type: nfs
