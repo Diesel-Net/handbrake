@@ -24,7 +24,10 @@
       loop_control:
         loop_var: sub_dir
 
-    # TODO: Add Custom Handbrake Plex Presets into config_dir
+    - name: 'Copy custom handbrake presets into {{ config_dir }}'
+      copy:
+        src: '{{ playbook_dir }}/presets/'
+        dest: '{{ config_dir }}' 
 
     - include_role:
         name: docker

@@ -7,11 +7,13 @@ services:
       # TODO
       #- USER_ID=0
       #- GROUP_ID=0
+      - KEEP_APP_RUNNING=1
+      #- AUTOMATED_CONVERSION_PRESET=Custom/
       - NVIDIA_DRIVER_CAPABILITIES=video,utility
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - {{ config_dir }}:/storage/presets:ro
-      - nas-media:/storage/nas-media:ro
+      #- nas-media:/storage/nas-media:ro
       - nas-roms:/storage/nas-roms:ro
       - {{ data_dir }}:/config:rw
       - nas-handbrake-watch:/watch:rw
@@ -26,21 +28,21 @@ services:
         - traefik.http.routers.{{ repository }}.service={{ repository }}
         - traefik.http.routers.{{ repository }}.tls.certresolver=step-ca
 
-volumes:
-  nas-media:
-    driver: local
-    driver_opts:
-      # requires `nfs-common` on Debian
-      # OR `nfs-client` on CentOS/Fedora
-      type: nfs
-      o: addr={{ nfs_host }},ro,nfsvers=4,async
-      device: :{{ nfs_media_path }}
+# volumes:
+#   nas-media:
+#     driver: local
+#     driver_opts:
+#       # requires `nfs-common` on Debian
+#       # OR `nfs-client` on CentOS/Fedora
+#       type: nfs
+#       o: addr={{ nfs_host }},ro,nfsvers=4,async
+#       device: :{{ nfs_media_path }}
 
+# NFS volumes requires `nfs-common` on Debian
+# OR `nfs-client` on CentOS/Fedora
   nas-roms:
     driver: local
     driver_opts:
-      # requires `nfs-common` on Debian
-      # OR `nfs-client` on CentOS/Fedora
       type: nfs
       o: addr={{ nfs_host }},ro,nfsvers=4,async
       device: :{{ nfs_roms_path }}
@@ -48,8 +50,6 @@ volumes:
   nas-handbrake-watch:
     driver: local
     driver_opts:
-      # requires `nfs-common` on Debian
-      # OR `nfs-client` on CentOS/Fedora
       type: nfs
       o: addr={{ nfs_host }},rw,nfsvers=4,async
       device: :{{ nfs_handbrake_path }}/watch
@@ -57,8 +57,6 @@ volumes:
   nas-handbrake-output:
     driver: local
     driver_opts:
-      # requires `nfs-common` on Debian
-      # OR `nfs-client` on CentOS/Fedora
       type: nfs
       o: addr={{ nfs_host }},rw,nfsvers=4,async
       device: :{{ nfs_handbrake_path }}/output
