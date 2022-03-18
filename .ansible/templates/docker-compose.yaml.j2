@@ -28,18 +28,9 @@ services:
         - traefik.http.routers.{{ repository }}.service={{ repository }}
         - traefik.http.routers.{{ repository }}.tls.certresolver=step-ca
 
-# volumes:
-#   nas-media:
-#     driver: local
-#     driver_opts:
-#       # requires `nfs-common` on Debian
-#       # OR `nfs-client` on CentOS/Fedora
-#       type: nfs
-#       o: addr={{ nfs_host }},ro,nfsvers=4,async
-#       device: :{{ nfs_media_path }}
-
-# NFS volumes requires `nfs-common` on Debian
-# OR `nfs-client` on CentOS/Fedora
+volumes:
+  # NFS volumes requires `nfs-common` on Debian
+  # OR `nfs-client` on CentOS/Fedora
   nas-roms:
     driver: local
     driver_opts:
@@ -61,6 +52,14 @@ services:
       o: addr={{ nfs_host }},rw,nfsvers=4,async
       device: :{{ nfs_handbrake_path }}/output
 
+  # nas-media:
+  #   driver: local
+  #   driver_opts:
+  #     # requires `nfs-common` on Debian
+  #     # OR `nfs-client` on CentOS/Fedora
+  #     type: nfs
+  #     o: addr={{ nfs_host }},ro,nfsvers=4,async
+  #     device: :{{ nfs_media_path }}
 
 
 networks:
