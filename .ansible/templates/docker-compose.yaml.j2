@@ -14,7 +14,7 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
       - {{ localtime_file }}:/etc/localtime
-      - {{ config_dir }}:/storage/presets:ro
+      - {{ config_dir }}:/storage/presets:rw
       - nas-blu-ray:/storage/blu-ray:ro
       - {{ data_dir }}:/config:rw
       - nas-handbrake-watch:/watch:rw
