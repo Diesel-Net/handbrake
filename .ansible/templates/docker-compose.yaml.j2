@@ -49,7 +49,7 @@ volumes:
       # requires `nfs-common` on Debian
       # OR `nfs-client` on CentOS/Fedora
       type: nfs
-      o: addr={{ nfs_host }},ro,nfsvers=4,async
+      o: addr={{ nfs_host }},rw,nfsvers=4,async
       device: :{{ nfs_handbrake_path }}/watch
 
   nas-handbrake-output:
@@ -58,7 +58,7 @@ volumes:
       # requires `nfs-common` on Debian
       # OR `nfs-client` on CentOS/Fedora
       type: nfs
-      o: addr={{ nfs_host }},ro,nfsvers=4,async
+      o: addr={{ nfs_host }},rw,nfsvers=4,async
       device: :{{ nfs_handbrake_path }}/output
 
 
