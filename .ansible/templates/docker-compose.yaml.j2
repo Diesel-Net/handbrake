@@ -28,7 +28,7 @@ services:
         - traefik.http.routers.{{ repository }}.rule=Host(`{{ host }}`)
         - traefik.http.routers.{{ repository }}.service={{ repository }}
         - traefik.http.routers.{{ repository }}.tls.certresolver=step-ca
-      resource:
+      resources:
         limits:
           cpus: '4.0'
           memory: 2G
