@@ -4,17 +4,17 @@ services:
   webui:
     image: zocker160/handbrake-nvenc:latest
     environment:
-      # TODO
-      #- USER_ID=0
-      #- GROUP_ID=0
       - KEEP_APP_RUNNING=1
+      - ENABLE_CJK_FONT=1
       - AUTOMATED_CONVERSION_PRESET=Custom/Plex (slow, small)
       - AUTOMATED_CONVERSION_FORMAT=mkv
+      - AUTOMATED_CONVERSION_KEEP_SOURCE=1
+      - AUTOMATED_CONVERSION_OVERWRITE_OUTPUT=1
       - NVIDIA_DRIVER_CAPABILITIES=video,utility
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
+      - {{ localtime_file }}:/etc/localtime
       - {{ config_dir }}:/storage/presets:ro
-      #- nas-media:/storage/nas-media:ro
       - nas-roms:/storage/nas-roms:ro
       - {{ data_dir }}:/config:rw
       - nas-handbrake-watch:/watch:rw
