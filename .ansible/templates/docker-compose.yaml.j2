@@ -5,8 +5,8 @@ services:
     image: zocker160/handbrake-nvenc:latest
     environment:
       # TODO
-      - USER_ID=0
-      - GROUP_ID=0
+      #- USER_ID=0
+      #- GROUP_ID=0
       - NVIDIA_DRIVER_CAPABILITIES=video,utility
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
