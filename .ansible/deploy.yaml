@@ -26,7 +26,7 @@
 
     - name: 'Copy custom handbrake presets into {{ config_dir }}'
       copy:
-        src: '{{ playbook_dir }}/presets/'
+        src: '{{ playbook_dir }}/../presets/'
         dest: '{{ config_dir }}' 
 
     - include_role:
