@@ -36,7 +36,7 @@ volumes:
     driver_opts:
       type: nfs
       o: addr={{ nfs_host }},ro,nfsvers=4,async
-      device: :{{ nfs_roms_path }}
+      device: :{{ nfs_roms_path }}/Blu-ray
 
   nas-handbrake-watch:
     driver: local
@@ -51,15 +51,6 @@ volumes:
       type: nfs
       o: addr={{ nfs_host }},rw,nfsvers=4,async
       device: :{{ nfs_handbrake_path }}/output
-
-  # nas-media:
-  #   driver: local
-  #   driver_opts:
-  #     # requires `nfs-common` on Debian
-  #     # OR `nfs-client` on CentOS/Fedora
-  #     type: nfs
-  #     o: addr={{ nfs_host }},ro,nfsvers=4,async
-  #     device: :{{ nfs_media_path }}
 
 
 networks:
