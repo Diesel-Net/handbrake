@@ -6,7 +6,7 @@ services:
     environment:
       - KEEP_APP_RUNNING=1
       - ENABLE_CJK_FONT=1
-      - AUTOMATED_CONVERSION_PRESET=Plex (slow, small)
+      - AUTOMATED_CONVERSION_PRESET={{ automated_conversion_preset }}
       - AUTOMATED_CONVERSION_FORMAT=mkv
       - AUTOMATED_CONVERSION_KEEP_SOURCE=1
       - AUTOMATED_CONVERSION_OVERWRITE_OUTPUT=1

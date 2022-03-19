@@ -1,1 +1,3 @@
 host: handbrake.diesel.net
+
+automated_conversion_preset: Plex (slow, small)
