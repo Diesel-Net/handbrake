@@ -1,6 +1,5 @@
 {
-    "PresetList":
-    [
+    "PresetList": [
         {
             "AlignAVStart": false,
             "AudioCopyMask":
@@ -15,8 +14,10 @@
                 "copy:eac3"
             ],
             "AudioEncoderFallback": "ac3",
-            "AudioLanguageList":
-            [],
+            "AudioLanguageList": [
+                "eng",
+                "jpn"
+            ],
             "AudioList":
             [
                 {
@@ -33,10 +34,9 @@
                 }
             ],
             "AudioSecondaryEncoderMode": true,
-            "AudioTrackSelectionBehavior": "first",
+            "AudioTrackSelectionBehavior": "all",
             "ChapterMarkers": true,
-            "ChildrenArray":
-            [],
+            "ChildrenArray": [],
             "Default": false,
             "FileFormat": "av_mkv",
             "Folder": false,
@@ -84,14 +84,14 @@
             "SubtitleAddCC": true,
             "SubtitleAddForeignAudioSearch": true,
             "SubtitleAddForeignAudioSubtitle": true,
-            "SubtitleBurnBehavior": "none",
+            "SubtitleBurnBehavior": "foreign",
             "SubtitleBurnBDSub": false,
             "SubtitleBurnDVDSub": false,
             "SubtitleLanguageList":
             [
                 "eng"
             ],
-            "SubtitleTrackSelectionBehavior": "first",
+            "SubtitleTrackSelectionBehavior": "all",
             "VideoAvgBitrate": 0,
             "VideoColorMatrixCode": 0,
             "VideoEncoder": "nvenc_h265",
@@ -113,7 +113,7 @@
             "x264UseAdvancedOptions": false
         }
     ],
-    "VersionMajor": 42,
+    "VersionMajor": 47,
     "VersionMicro": 0,
     "VersionMinor": 0
 }
