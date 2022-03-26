@@ -5,7 +5,7 @@ services:
     image: zocker160/handbrake-nvenc:latest
     environment:
       - KEEP_APP_RUNNING=1
-      - ENABLE_CJK_FONT=0
+      - ENABLE_CJK_FONT=1
       - AUTOMATED_CONVERSION_PRESET={{ automated_conversion_preset }}
       - AUTOMATED_CONVERSION_FORMAT=mkv
       - AUTOMATED_CONVERSION_KEEP_SOURCE=1
