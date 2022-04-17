@@ -4,12 +4,25 @@ services:
   webui:
     image: zocker160/handbrake-nvenc:latest
     environment:
+      # global options
       - KEEP_APP_RUNNING=1
       - ENABLE_CJK_FONT=1
+
+      # watch (plex)
       - AUTOMATED_CONVERSION_PRESET={{ automated_conversion_preset }}
       - AUTOMATED_CONVERSION_FORMAT=mkv
       - AUTOMATED_CONVERSION_KEEP_SOURCE=1
       - AUTOMATED_CONVERSION_OVERWRITE_OUTPUT=1
+      - AUTOMATED_CONVERSION_OUTPUT_SUBDIR=plex
+
+      # watch2 (discord)
+      - AUTOMATED_CONVERSION_PRESET_2=Web/Discord Small 2 Minutes 360p30
+      - AUTOMATED_CONVERSION_FORMAT_2=m4v
+      - AUTOMATED_CONVERSION_KEEP_SOURCE_2=1
+      - AUTOMATED_CONVERSION_OVERWRITE_OUTPUT_2=1
+      - AUTOMATED_CONVERSION_OUTPUT_SUBDIR_2=discord
+
+      # nvidia-gpu
       - NVIDIA_DRIVER_CAPABILITIES=video,utility
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
@@ -17,7 +30,8 @@ services:
       - {{ config_dir }}:/storage/presets:ro
       - nas-blu-ray:/storage/blu-ray:ro
       - {{ data_dir }}:/config:rw
-      - nas-handbrake-watch:/watch:rw
+      - nas-handbrake-watch-plex:/watch:rw
+      - nas-handbrake-watch-discord:/watch2:rw
       - nas-handbrake-output:/output:rw
     networks:
       - {{ traefik_network }}
@@ -44,12 +58,19 @@ volumes:
       o: addr={{ nfs_host }},ro,nfsvers=4,async
       device: :{{ nfs_roms_path }}/Blu-ray
 
-  nas-handbrake-watch:
+  nas-handbrake-watch-plex:
     driver: local
     driver_opts:
       type: nfs
       o: addr={{ nfs_host }},rw,nfsvers=4,async
-      device: :{{ nfs_handbrake_path }}/watch
+      device: :{{ nfs_handbrake_path }}/watch/plex
+
+  nas-handbrake-watch-discord:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr={{ nfs_host }},rw,nfsvers=4,async
+      device: :{{ nfs_handbrake_path }}/watch/discord
 
   nas-handbrake-output:
     driver: local
