@@ -1,0 +1,20 @@
+all:
+  children:
+
+    swarm_manager:
+      hosts:
+        quadro.diesel.net:
+
+  vars:
+
+    host: handbrake.diesel.net
+
+    automated_conversion_preset: Plex (slow, small)
+
+    nfs_host: nas.diesel.net
+    nfs_media_path: /volume1/Media
+    nfs_roms_path: /volume1/ROMs
+    nfs_handbrake_path: /volume1/Handbrake
+
+    ansible_user: automation
+    ansible_python_interpreter: /usr/bin/python3
