@@ -26,7 +26,7 @@ services:
       - NVIDIA_DRIVER_CAPABILITIES=video,utility
       - NVIDIA_VISIBLE_DEVICES=all
     volumes:
-      - {{ localtime_file }}:/etc/localtime
+      - /etc/localtime:/etc/localtime
       - {{ config_dir }}:/storage/presets:ro
       - nas-blu-ray:/storage/blu-ray:ro
       - {{ data_dir }}:/config:rw
